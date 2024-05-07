@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All Attendance</h1>
+<table id="attendance-table" class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Date</th>
+            <th>Present</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attendance in attendances %}
+        <tr>
+            <td>{{ attendance.employee.name }}</td>
+            <td>{{ attendance.date }}</td>
+            <td>{{ attendance.is_present|yesno }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function () {
+        $('#attendance-table').DataTable();
+    });
+</script>
+{% endblock %}
